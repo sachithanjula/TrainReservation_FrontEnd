@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+<head>
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+	integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
+	crossorigin="anonymous">
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
+	integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
+	crossorigin="anonymous">
+<title>Book my Train</title>
+</head>
+<body onload="showTrainAndUserDetails()">
+
+	<!-- Begin page content -->
+	<div>
+		<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+			<img style="width: 100px;" src="top.png"> <a href="home.html"
+				class="navbar-brand"><h3>Book my Train</h3></a>
+			<form class="form-inline">
+				<div class="btn-group btn-group-sm" role="group">
+					<span id="logged-name"></span>
+					<button id="login-btn" class="btn btn-sm btn-dark" type="button">Login</button>
+					<button id="reg-btn" class="btn btn-sm btn-dark" type="button">Register</button>
+				</div>
+				<button id="logout-btn" class="btn btn-sm btn-secondary"
+					type="button">Log out</button>
+			</form>
+		</nav>
+	</div>
+
+	<div role="main" class="container col-md-6">
+		<br /> <br />
+		<div class="alert alert-dark" role="alert">
+			<h6>
+				Your are paying Rs : <strong id="amount"></strong>
+			</h6>
+		</div>
+		<ul id="train-item" class="list-group">
+			<li class="list-group-item">
+				<form>
+					<div class="form-row">
+						<div class="form-group col-md-6">
+							<label for="email">Email</label> <input required type="email"
+								class="form-control" id="email" placeholder="Email">
+						</div>
+						<div class="form-group col-md-6">
+							<label for="mobile">Mobile</label> <input required type="text"
+								class="form-control" id="mobile" placeholder="077 123 4567">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="name">Name</label> <input required type="text"
+							class="form-control" id="name" placeholder="User">
+					</div>
+					<div class="form-group">
+						<label for="address">Address</label> <input required type="text"
+							class="form-control" id="address" placeholder="Address">
+					</div>
+
+					<div class="form-group">
+						<label for="address">NIC</label> <input type="text"
+							class="form-control" id="nic" placeholder="123654789V">
+					</div>
+
+					<button id="checknic" type="button" class="btn btn-dark btn-sm"
+						onclick="checkGovernment()">Check</button>
+
+					<div id="box" class="alert alert-danger">
+						<p id="demo"></p>
+					</div>
+
+
+					<div class="form-group">
+						<label>Payment method</label>
+						<div class="form-row">
+							<div class="form-check col-md-6">
+								<input class="form-check-input" type="radio"
+									name="paymentRadios" id="paymentRadiosCard" value="card"
+									checked> <label class="form-check-label"
+									for="paymentRadiosCard"> <i class="fas fa-credit-card"></i>
+									Credit/Debit Card
+								</label>
+							</div>
+							<div class="form-check col-md-6">
+								<input class="form-check-input" type="radio"
+									name="paymentRadios" id="paymentRadiosBill" value="bill">
+								<label class="form-check-label" for="paymentRadiosBill">
+									<i class="fas fa-mobile-alt"></i> Add to Dialog Postpaid Bill
+								</label>
+							</div>
+						</div>
+					</div>
+
+					<!-- payment details for credit card payment -->
+					<div id="cardPayment" class="form-group">
+						<div class="form-group">
+							<label for="name">Card Number</label> <input type="text"
+								class="form-control" id="card-number"
+								placeholder="3432 4532 4434 5435">
+						</div>
+						<div class="form-row">
+							<div class="form-group col-md-6">
+								<label for="exp-date">Expiry Date</label> <input type="text"
+									class="form-control" id="exp-date" placeholder="09/19">
+							</div>
+							<div class="form-group col-md-6">
+								<label for="ccv">CCV</label> <input type="text"
+									class="form-control" id="ccv" placeholder="123">
+							</div>
+						</div>
+					</div>
+
+					<!-- payment details for dialog bill -->
+					<div id="billPayment" class="form-group">
+						<div class="form-row">
+							<div class="form-group col-md-6">
+								<label for="dialog-number">Dialog Mobile Number</label> <input
+									type="number" class="form-control" id="dialog-number"
+									placeholder="077 124 3454">
+							</div>
+							<div class="form-group col-md-6">
+								<label for="pin">Pin</label> <input type="number"
+									class="form-control" id="pin" placeholder="1234">
+								<button id="pin-btn" type="button" class="btn btn-dark btn-sm">Request
+									Pin</button>
+							</div>
+						</div>
+					</div>
+
+					<button type="button" class="btn btn-outline-success btn-block"
+						onclick="makePayment();">Proceed to payment</button>
+				</form>
+			</li>
+		</ul>
+	</div>
+
+
+
+	<!-- Optional JavaScript -->
+	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	<script src="./jquery-3.3.1.min.js"></script>
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	<script src="./bundle.js"></script>
+
+	<script>
+		function checkGovernment() {
+			var n1 = document.getElementById('nic').value;
+			console.log(n1);
+			var ids = [ "952522353v", "957382711v", "660211233v", "652399782v" ];
+			var check = ids.includes(n1);
+			console.log(ids);
+			console.log(check);
+			if (check) {
+				
+				$('#checknic').hide();
+				$('#box').show();
+				document.getElementById("demo").innerHTML = "You are getting 10% off!!!"
+
+			} else{
+				$('#checknic').hide();
+				$('#box').show();
+				document.getElementById("demo").innerHTML = "You are not entitled for a discount!!"
+
+			}
+				
+
+		}
+	</script>
+
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+	integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
+	crossorigin="anonymous">
+<title>Book my Train</title>
+</head>
+<body>
+
+
+	<!-- Begin page content -->
+	<div>
+		<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+			<img style="width: 100px;" src="top.png"> <a href="home.html"
+				class="navbar-brand"><h3>Book my Train</h3></a>
+			<form class="form-inline">
+				<div class="btn-group btn-group-sm" role="group">
+					<button id="login-btn" class="btn btn-sm btn-secondary" type="button">Login</button>
+					<button id="reg-btn" class="btn btn-sm btn-secondary" type="button">Register</button>
+				</div>
+				<button id="logout-btn" class="btn btn-sm btn-secondary" type="button">Logout</button>
+				<button id="checkout-btn" class="btn btn-danger" type="button">Book</button>
+			</form>
+		</nav>
+	</div>
+
+	<div role="main" class="container">
+		<br /> <br />
+		<div class="input-group mb-3">
+			<input id="train-search1" type="text" class="form-control" placeholder="Start Point"> 
+			<input id="train-search2" type="text" class="form-control" placeholder="End Point">
+			<div class="input-group-append">
+				<button id="s-btn" class="btn btn-secondary" type="button">Search Trains!</button>
+			</div>
+		</div>
+
+		<br>
+		<div class="card" id="train-list" >
+			<!--  jQuery will insert the LI here. -->
+		</div>
+
+
+
+	<!-- Optional JavaScript -->
+	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	<script src="./jquery-3.3.1.min.js"></script>
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	<script src="./bundle.js"></script>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>
